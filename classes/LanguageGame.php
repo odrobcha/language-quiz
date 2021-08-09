@@ -5,9 +5,11 @@ class LanguageGame
     private array $words = [];
     private array $randomWord;
     private string $correctAnswer = '';
+    public int $score;
 
 
-    public function __construct()
+
+    public function __construct($score)
     {
         // :: is used for static functions
         // They can be called without an instance of that class being created
@@ -20,6 +22,7 @@ class LanguageGame
 
         }
         $this->randomWord = $this->words[rand(0, count($this->words) - 1)];
+        $this->score = (int)$score;
 
     }
 
@@ -35,6 +38,8 @@ class LanguageGame
         // TODO: generate a message for the user that can be shown
 
         if ($verifyAnswer){
+            $this->addScore();
+        //    var_dump($this->score);
             $this->correctAnswer = '<br> <div>Great job! The answer is correct</div>';
 
         } else {
@@ -43,6 +48,9 @@ class LanguageGame
         }
 
     }
+    public function addScore(){
+        $this->score = (int)($this->score) + 1;
+    }
 
     public function getRandomWord()
     {
@@ -50,5 +58,13 @@ class LanguageGame
     }
     public function getCorrectAnswer(){
         return $this->correctAnswer;
+    }
+
+    /**
+     * @return int
+     */
+    public function getScore(): int
+    {
+        return $this->score;
     }
 }

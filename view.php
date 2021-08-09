@@ -9,8 +9,13 @@
 </head>
 <body>
 <!-- TODO: add a form for the user to play the game -->
+<form metod="post">
+    <input type="hidden" name="score" value="0">
+    <button type="submit">Reset Score</button>
+</form>
 <form method="post">
-
+    <div> Your score: <?php echo $game->getScore() ?></div>
+    <input type="hidden" name="score" value="<?php echo $game->score ?>">
     <label for="answer"><?php echo 'Please, translate: ' .$game->getRandomWord()['french'] ?></label>
     <input type="hidden" name="question" value="<?php echo $game->getRandomWord()['english']; ?>">
     <input type="text" id="answer" name="answer"/>

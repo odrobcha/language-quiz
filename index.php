@@ -14,9 +14,10 @@ require 'classes/LanguageGame.php';
 // require_once 'classes/Player.php'; // Only needed for extra's
 require_once 'classes/Word.php';
 
-
-$game = new LanguageGame();
-
+$score = $_POST['score'] ?? 0;
+//var_dump($score);
+$game = new LanguageGame($score);
+//var_dump($score);
 if (!empty($_POST)){
     $answer = new Word($_POST["answer"], $_POST["question"]);
     $game->run($answer->verify());

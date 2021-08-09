@@ -31,17 +31,4 @@ class Word
         // Bonus: allow answers with different casing (example: both bread or Bread can be correct answers, even though technically it's a different string)
         // Bonus (hard): can you allow answers with small typo's (max one character different)?
     }
-
-    public function getAnswer()
-    {
-        return $this->word;
-    }
-    public function getRandomWord()
-    {
-        return $this->randomWord;
-    }
-
-
-
-
 }
