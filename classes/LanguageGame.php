@@ -2,7 +2,10 @@
 
 class LanguageGame
 {
-    private array $words;
+    private array $words = [];
+    private array $randomWord;
+    private string $correctAnswer = '';
+
 
     public function __construct()
     {
@@ -10,11 +13,17 @@ class LanguageGame
         // They can be called without an instance of that class being created
         // and are used mostly for more *static* types of data (a fixed set of translations in this case)
         foreach (Data::words() as $frenchTranslation => $englishTranslation) {
+            $tempArray = ['french' => $frenchTranslation, 'english' => $englishTranslation];
+            array_push($this->words, $tempArray);
+
             // TODO: create instances of the Word class to be added to the words array
+
         }
+        $this->randomWord = $this->words[rand(0, count($this->words) - 1)];
+
     }
 
-    public function run()
+    public function run(bool $verifyAnswer)
     {
         // TODO: check for option A or B
 
@@ -25,5 +34,21 @@ class LanguageGame
         // TODO: verify the answer (use the verify function in the word class) - you'll need to get the used word from the array first
         // TODO: generate a message for the user that can be shown
 
+        if ($verifyAnswer){
+            $this->correctAnswer = '<br> <div>Great job! The answer is correct</div>';
+
+        } else {
+            $this->correctAnswer = "<br> <div>Oooops! The answer is not correct... Study more </div>";
+
+        }
+
+    }
+
+    public function getRandomWord()
+    {
+        return $this->randomWord;
+    }
+    public function getCorrectAnswer(){
+        return $this->correctAnswer;
     }
 }
