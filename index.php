@@ -10,15 +10,13 @@ error_reporting(E_ALL);
 
 // Load your classes
 require_once 'classes/Data.php';
-require 'classes/LanguageGame.php';
+require_once 'classes/LanguageGame.php';
 // require_once 'classes/Player.php'; // Only needed for extra's
 require_once 'classes/Word.php';
 
-$score = $_POST['score'] ?? 0;
-//var_dump($score);
-$game = new LanguageGame($score);
-//var_dump($score);
-if (!empty($_POST)){
+$game = new LanguageGame();
+
+if (!empty($_POST["answer"]) && !empty($_POST["question"])){
     $answer = new Word($_POST["answer"], $_POST["question"]);
     $game->run($answer->verify());
 }
