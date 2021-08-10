@@ -46,17 +46,18 @@ class LanguageGame
             return '';
         }
 
-        return '<form method="post">
-            <input type="hidden" name="reset" value="0">
-            <button type="submit">Reset Score</button>'
-            .' </form>'
-            .'<form method="post">'
+        return
+            '<form method="post" class="answer">'
             .'<div> Your score: '.$this->score .' of ' . ($_SESSION['questionNumber'] ?? 0) .'</div>'
             .'<input type="hidden" name="score" value="' .$this->score .'">'
             .' <label for="answer"> Please, translate: ' .$this->getRandomWord()['french']. ' </label>'
             .'<input type="hidden" name="question" value="' .$this->getRandomWord()['english'] .'">'
             .'<input type="text" id="answer" name="answer"/>'
-            .'</form>';
+            .'</form>'
+            .'<form method="post" class="reset">
+                    <input type="hidden" name="reset" value="0">
+                    <button type="submit">Reset Score</button>'
+            .' </form>';
     }
 
     public function run(bool $verifyAnswer) : void
