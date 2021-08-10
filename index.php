@@ -13,15 +13,12 @@ require_once 'classes/Data.php';
 require_once 'classes/LanguageGame.php';
 require_once 'classes/Player.php'; // Only needed for extra's
 require_once 'classes/Word.php';
-
-$game = new LanguageGame();
-
 if (isset($_POST["user_name"])){
     $user = new Player($_POST["user_name"]);
 }
-if (!empty($_POST["answer"]) && !empty($_POST["question"])){
-    $answer = new Word($_POST["answer"], $_POST["question"]);
-    $game->run($answer->verify());}
+
+$game = new LanguageGame();
+$game->start();
 
 
 //session_destroy();

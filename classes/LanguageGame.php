@@ -33,7 +33,7 @@ class LanguageGame
         if (isset($_SESSION['user_name'])){
             return '';
         } else {
-            return ' <form method="post">
+            return ' <form method="post" class="name-form">
                      <label for="user_name">Enter your name</label>
                      <input type="text" id="user_name" name="user_name"/>
                      <button type="submit">Send</button>
@@ -52,7 +52,9 @@ class LanguageGame
             .'<input type="hidden" name="score" value="' .$this->score .'">'
             .' <label for="answer"> Please, translate: ' .$this->getRandomWord()['french']. ' </label>'
             .'<input type="hidden" name="question" value="' .$this->getRandomWord()['english'] .'">'
+
             .'<input type="text" id="answer" name="answer"/>'
+            .'<button type="submit">Answer</button>'
             .'</form>'
             .'<form method="post" class="reset">
                     <input type="hidden" name="reset" value="0">
@@ -60,8 +62,17 @@ class LanguageGame
             .' </form>';
     }
 
+    public function start()
+    {
+        if (!empty($_POST["answer"]) && !empty($_POST["question"])){
+            $answer = new Word($_POST["answer"], $_POST["question"]);
+            $this->run($answer->verify());
+        }
+    }
+
     public function run(bool $verifyAnswer) : void
     {
+        
         $this->setQuestionNumber();
         if ($verifyAnswer){
             $this->addScore();
