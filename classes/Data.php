@@ -2,7 +2,7 @@
 
 class Data
 {
-    public static function words()
+    public static function words() :array
     {
         return [
             'pain' => 'bread',

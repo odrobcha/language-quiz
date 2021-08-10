@@ -7,7 +7,6 @@ class Player
 
     public function __construct($name)
     {
-        // TODO: add 👤 automatically to their name
         $this->name = $name;
         $_SESSION['user_name'] = $this->name;
     }
