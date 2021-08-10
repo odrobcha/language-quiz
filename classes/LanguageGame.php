@@ -30,8 +30,41 @@ class LanguageGame
             $this->questionNumber = (int)(($_SESSION['questionNumber']) ?? 0);
         }
 
-        
-   //     $this->questionNumber = (int)(($_SESSION['questionNumber']) ?? 0);
+
+    }
+    public function toggleNameField() : string
+    {
+        if (isset($_SESSION['user_name'])){
+            return '';
+        } else {
+            return ' <form method="post">
+                     <label for="user_name">Enter your name</label>
+                     <input type="text" id="user_name" name="user_name"/>
+                     <button type="submit">Send</button>
+                 </form>';
+
+        }
+
+
+    }
+    public function toggleGameFields () :string
+    {
+        if (!isset($_SESSION['user_name'])){
+
+            return '';
+        }
+
+        return '<form method="post">
+            <input type="hidden" name="score" value="0">
+            <button type="submit">Reset Score</button>'
+            .'<form method="post">'
+            .'<div> Your score:'.$this->getScore() .'of ' . $this->getQuestionNumber() .'</div>'
+            .'<input type="hidden" name="score" value="' .$this->score .'">'
+            .' <label for="answer"> Please, translate: ' .$this->getRandomWord()['french']. '</label>'
+            .'<input type="hidden" name="question" value="' .$this->getRandomWord()['english'] .'">'
+            .'<input type="text" id="answer" name="answer"/>'
+            .'</form>';
+
 
     }
 
