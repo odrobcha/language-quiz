@@ -20,6 +20,5 @@ if (isset($_POST["user_name"])){
 $game = new LanguageGame();
 $game->start();
 
-
 //session_destroy();
 require 'view.php';
