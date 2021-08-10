@@ -28,22 +28,15 @@ class LanguageGame
         }
 
     }
-    public function toggleNameField() : string
+
+    public function toggleGameFields () :string
     {
-        if (isset($_SESSION['user_name'])){
-            return '';
-        } else {
+        if (!isset($_SESSION['user_name'])){
             return ' <form method="post" class="name-form">
                      <label for="user_name">Enter your name</label>
                      <input type="text" id="user_name" name="user_name"/>
                      <button type="submit">Send</button>
                  </form>';
-        }
-    }
-    public function toggleGameFields () :string
-    {
-        if (!isset($_SESSION['user_name'])){
-            return '';
         }
 
         return

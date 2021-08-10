@@ -20,7 +20,7 @@
 <div class="container">
     
     <div class="user-name"> <?php  echo 'Hello, ' . ($_SESSION['user_name'] ?? 'unknown friend'); ?></div>
-    <?php echo $game->toggleNameField() ?>
+    
     <?php echo $game->toggleGameFields()?>
     <?php echo $game->getCorrectAnswer()?>
 </div>
