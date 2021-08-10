@@ -6,7 +6,7 @@ class LanguageGame
     private array $randomWord;
     private string $correctAnswer = '';
     public int $score;
-    private int $questionNumber;
+    private int $questionNumber = 0;
 
 
 
@@ -23,13 +23,19 @@ class LanguageGame
 
         }
         $this->randomWord = $this->words[rand(0, count($this->words) - 1)];
-       // $this->score = (int)$score;
         $this->score = (int)($_POST['score'] ?? 0);
-        $this->questionNumber = (int)(($_SESSION['questionNumber']) ?? 0);
+        if ((isset($_POST['score']) && ($_POST['score']) == 0)){
+            $_SESSION['questionNumber'] = 0;
+        } else {
+            $this->questionNumber = (int)(($_SESSION['questionNumber']) ?? 0);
+        }
+
+        
+   //     $this->questionNumber = (int)(($_SESSION['questionNumber']) ?? 0);
 
     }
 
-    public function run(bool $verifyAnswer)
+    public function run(bool $verifyAnswer) : void
     {
        
         // TODO: check for option A or B
@@ -51,25 +57,26 @@ class LanguageGame
 
     }
 
-    public function getQuestionNumber()
+    public function getQuestionNumber() : int
     {
         return $this->questionNumber;
     }
-    public function setQuestionNumber()
+    public function setQuestionNumber() :void
     {
         $this->questionNumber = (int)($this->questionNumber + 1);
         $_SESSION['questionNumber'] = $this->questionNumber;
     }
-    public function addScore()
+    public function addScore() :void
     {
         $this->score = (int)($this->score) + 1;
     }
 
-    public function getRandomWord()
+    public function getRandomWord() :array
     {
         return $this->randomWord;
     }
-    public function getCorrectAnswer(){
+    public function getCorrectAnswer() : string
+    {
         return $this->correctAnswer;
     }
 
@@ -79,6 +86,11 @@ class LanguageGame
     public function getScore(): int
     {
         return $this->score;
+    }
+
+    public function resetQuestionNumber(): void
+    {
+        $_SESSION['questionNumber'] = '0';
     }
 
 
